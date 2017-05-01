@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Elemente: Interaktive Elemente</title>
+
+    <!--
+        details, summary, menu, menuitem
+    -->
+    <style type="text/css">
+        body {
+            color: black;
+            text-size: 1em;
+            font-family: "Calibri Light";
+        }
+
+        h2 {
+            font-size: 2em;
+
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        #sample {
+            background: #bfd5ec;
+            border: 1px solid #cccccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<article>
+    <header>
+        <h1>Interaktive Elemente</h1>
+        <hr>
+    </header>
+    <section>
+        <h2>details</h2>
+        <p>
+            Das &lt;details&gt; tag ermöglicht die Anzeige von zusätzlichen Informationen welche der User anzeigen und
+            wieder verstecken kann.
+        </p>
+        <h3>Attribute</h3>
+        <p>
+            Nur globale Attribute
+        </p>
+        <h3>Beispiel</h3>
+        <p>
+            <details>
+                <summary>Copyright 1999-2014.</summary>
+        <p> - by Refsnes Data. All Rights Reserved.</p>
+        <p>All content and graphics on this web site are the property of the company Refsnes Data.</p>
+        </details>
+        </p>
+    </section>
+    <section>
+        <h2>summary</h2>
+        <p>
+            Das &lt;summary&gt; Tag definiert den sichtbaren Header &lt;details&gt; Element. Dieser Header ist klickbar
+            und zeigt/versteckt die dazugehörigen Details
+        </p>
+        <h3>Attribute</h3>
+        <p>
+            Nur globale Attribute
+        </p>
+
+    </section>
+    <section>
+        <h2>menu</h2>
+        <p>
+            <b>ACHTUNG: Ist nur von Firefox unterstützt.</b> </br>
+            Das &lt;menu&gt; Tag definiert eine Liste/Menu von Befehlen
+            Dieses Tag wird für Context Menus, Toolbars und fürs Auflisten von Controls und Commands verwendent.
+            Kann das bestehende Rechtsklick-Context-Menu im Firefox erweitern.
+        </p>
+        <h3>Attribute</h3>
+        <p>
+        <ul>
+            <li><b>type</b>: Art des Menu</li>
+        </ul>
+        </p>
+    </section>
+    <section>
+        <h2>menuitem</h2>
+        <p>
+            <b>ACHTUNG: Ist nur von Firefox unterstützt.</b> </br>
+            Das &lt;menuitem&gt; Tag definiert ein menu item das der User aufrufen kann.
+        </p>
+        <h3>Attribute</h3>
+        <p>
+        <ul>
+            <li><b>checked</b>: Soll menu-item angewählt sein beim laden der Seite</li>
+            <li><b>icon</b>: Icon des command items</li>
+            <li><b>label</b>: Name des menu-items</li>
+            <li><b>type</b>: Art des items. Checkbox, command, radio</li>
+            <li><b>default</b> Markiert Command als default</li>
+        </ul>
+        </p>
+        <h3>Beispiel</h3>
+        <div id="sample" contextmenu="mymenu">
+            <p>Right-click inside this box to see the context menu!</p>
+
+            <menu type="context" id="mymenu">
+                <menuitem label="Refresh" onclick="window.location.reload();" icon="ico_reload.png"></menuitem>
+                <menu label="Share on...">
+                    <menuitem label="Twitter" icon="ico_twitter.png"
+                              onclick="window.open('//twitter.com/intent/tweet?text=' + window.location.href);"></menuitem>
+                    <menuitem label="Facebook" icon="ico_facebook.png"
+                              onclick="window.open('//facebook.com/sharer/sharer.php?u=' + window.location.href);"></menuitem>
+                </menu>
+                <menuitem label="Email This Page"
+                          onclick="window.location='mailto:?body='+window.location.href;"></menuitem>
+            </menu>
+
+        </div>
+
+        <p>This example currently only works in Firefox!</p>
+    </section>
+</article>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Elemente: Ignorierte Elemente</title>
+
+    <!--
+        ruby, rb, rt, rp, rtc, map, area, bdo, bdi
+    -->
+</head>
+
+<body>
+    <article>
+        <header>
+            <h1>Ignorierte Elemente: <strong>Ruby Annotation</strong></h1>
+        </header>
+        <aside>
+            Die HTML-Ruby-Elemente haben nichts mit der gleichnamigen Programmiersprache zu tun. Weitere Infos zu Ruby Annotation bitte
+            bei <a href="https://de.wikipedia.org/wiki/Ruby_Annotation">Wikipedia</a> nachlesen.
+        </aside>
+        <section>
+            <h2>ruby-Element</h2>
+            <p>
+                Markiert einen Abschnitt mit Ruby Annotation (hauptsächlich für asiatische Texte zur Angabe der Aussprache).
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                Nur globale Attribute
+            </p>
+        </section>
+        <section>
+            <h2>rp-Element</h2>
+            <p>
+                Falls der Browser das Ruby-Element nicht kennt, wird der Inhalt innerhalb des rp-Elements angezeigt.
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                Nur globale Attribute
+            </p>
+        </section>
+        <section>
+            <h2>rt-Element</h2>
+            <p>
+                Angabe der Aussprache.
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                Nur globale Attribute
+            </p>
+        </section>
+        <section>
+            <h2>rb- und rtc-Element</h2>
+            <p>
+                Leider keine Ahnung... :-)
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                Nur globale Attribute
+            </p>
+        </section>
+        <section>
+            <h2>Beispiel</h2>
+            <pre>&lt;ruby&gt;
+  明日 &lt;rp&gt;(&lt;/rp&gt;&lt;rt&gt;Ashita&lt;/rt&gt;&lt;rp&gt;)&lt;/rp&gt;
+&lt;/ruby&gt;</pre>
+            <p>
+                <ruby>
+                    明日
+                    <rp>(</rp>
+                    <rt>Ashita</rt>
+                    <rp>)</rp>
+                </ruby>
+            </p>
+        </section>
+    </article>
+    <hr>
+    <article>
+        <header>
+            <h1>Ignorierte Elemente: <strong>Verweissensitive Grafiken</strong></h1>
+        </header>
+        <section>
+            <h2>map-Element</h2>
+            <p>
+                Ein map-Element verknüpft ein Bild mit einer Definition von klickbaren Flächen. Beim img-Element muss dazu das Attribut usemap
+                verwendet werden.
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                <ul>
+                    <li><b>name</b>: Ankername zur Verknüpfung des Bildes</li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>area-Element</h2>
+            <p>
+                Definition der verweissensitiven Flächen.
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                <ul>
+                    <li><b>shape</b>: Form der Fläche
+                        <ul>
+                            <li><i>rect</i> Rechteck</li>
+                            <li><i>circle</i> Kreis</li>
+                            <li><i>poly</i> beliebiges Vieleck</li>
+                        </ul>
+                    </li>
+                    <li><b>coords</b>: Koordinaten der ausgewählten Form</li>
+                    <li><b>href</b>: Link welcher bei einem Klick in die Fläche aufgerufen werden soll</li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>Beispiel</h2>
+            <p>
+                Siehe <a href="https://wiki.selfhtml.org/wiki/HTML/Multimedia_und_Grafiken/verweissensitive_Grafiken">hier</a>.
+            </p>
+        </section>
+    </article>
+    <hr>
+    <article>
+        <header>
+            <h1>Ignorierte Elemente: <strong>Textausrichtung</strong></h1>
+        </header>
+        <section>
+            <h2>bdo-Element</h2>
+            <p>
+                Ändert die Textrichtung innerhalb eines Textes (inline). Um die Richtung eines ganzen Blocks (z.B. article-Element) zu ändern,
+                kann einfach das globale dir-Attribut verwendet werden.
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                <ul>
+                    <li><b>dir</b>: Textausrichtung (muss zwingend angegeben werden)
+                        <ul>
+                            <li><i>ltr</i> Links nach rechts</li>
+                            <li><i>rtl</i> Rechts nach links</li>
+                        </ul>
+                    </li>
+                    <li><b>lang</b>: Angabe der Sprache wie z.B. ar für Arabisch. Eigentlich auch ein globales Attribut, macht
+                        in diesem zusammenhang aber sicher Sinn.</li>
+                </ul>
+            </p>
+        </section>
+        <section>
+            <h2>bdi-Element</h2>
+            <p>
+                Markiert Text bei dem die Textausrichtung nicht klar ist. Das bdi-Element ignoriert die Richtung des Elternelements.
+            </p>
+            <h3>Attribute</h3>
+            <p>
+                Nur globale Attribute
+            </p>
+        </section>
+        <section>
+            <h2>Beispiel</h2>
+            <pre>Normaler Text von &lt;bdo dir="rtl"&gt;Links nach Rechts&lt;/bdo&gt; mit einem Benutzernamen bei dem die Richtung nicht klar ist: &lt;bdi&gt;إيان&lt;/bdi&gt;</pre>
+            <p>
+                Normaler Text von <bdo dir="rtl">Links nach Rechts</bdo> mit einem Benutzernamen bei dem die Richtung nicht
+                klar ist:
+                <bdi>إيان</bdi>
+            </p>
+        </section>
+    </article>
+</body>
+
+</html>
