@@ -12,6 +12,8 @@
             margin: 0;
         }
 
+
+
         h2 {
             font-size: 2em;
 
@@ -22,18 +24,22 @@
         }
 
         /*
-        Think of flex items as
-        primarily laying out either in horizontal rows or vertical columns.
+        Viewport stellt den bildschirm dar. So können
+        z.b bei mobilen ansichten elemente ganz wegfallen oder anders aussehen
          */
 
         .holy-grail {
             display: flex;
             flex-direction: column; /* header -- content -- footer to align in column direction*/
-            height: 100vh;
+            height: 100vh; /* html und body element immer eine höhe geben damit div gesamten platz einnimmt
+                              am besten mit dieser absoluten einheit viewport-height arbeiten*/
         }
 
         header {
-            flex: 0 0 10vh;
+            /*flex: 0 0 10vh; */
+            height: 100px;
+            width: 100%;
+            position: fixed;
             background: green;
 
         }
@@ -42,6 +48,7 @@
             display: flex;
             flex-direction: row; /* content is aligned as a row*/
             flex: 1 0 auto; /* shorthand flex --> grow, shrink, basis */
+            margin-top:100px;
         }
 
         .holy-grail-content {
@@ -63,6 +70,35 @@
             flex: 0 0 10vh; /* height depending on viewport */
             background: yellow;
         }
+
+        /*
+        Media Queries
+         */
+        @media (max-width: 1280px) {
+            .holy-grail-ads {
+                display: none;
+            }
+        }
+
+        @media (max-width: 960px) {
+            .holy-grail-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex: 1 0 100px;
+                position: initial;
+                height: initial;
+                width: initial;
+            }
+            .holy-grail-wrapper {
+                margin-top:0;
+            }
+        }
+
+
 
     </style>
 </head>
