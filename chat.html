@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holy Grail Layout</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style type="text/css">
+        body {
+            color: black;
+            text-size: 1em;
+            font-family: "Calibri Light";
+            padding: 0;
+            margin: 0;
+        }
+
+        #sendBtn {
+            background: lightblue;
+            font-family: "Calibri Light";
+            font-weight: bold;
+            font-size: 16px;
+            color: black;
+            border: 2px solid #4CAF50; /* Green */
+        }
+
+        #sendBtn:hover {
+            background-color: white;
+        }
+
+        #inputField {
+            background: lightblue;
+            font-size: 16px;
+            border: 2px solid #4CAF50; /* Green */
+        }
+
+        li {
+
+        }
+
+        ul {
+            background: aliceblue;
+            margin: 0;
+        }
+
+        h2 {
+            background: cornflowerblue;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            background: lightgreen;
+        }
+
+        #name {
+            margin: 0;
+            background: lightgreen;
+
+        }
+
+        #message {
+            margin: 0;
+            background: lightblue;
+        }
+
+        #messageWrapper {
+            margin-top: 15px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <main class="holy-grail-content">
+        <h1>Chat mit REST</h1>
+        <h2>Chatverlauf</h2>
+        <div id="chat">
+        </div>
+        <input id="inputField" type="text" placeholder="type something">
+        <button id="sendBtn">Send</button>
+    </main>
+</div>
+<script>
+    const baseUrl = "http://chat.humbapa.ch";
+
+    document.getElementById("sendBtn").addEventListener("click", function (event) {
+    handleSendEvent();
+    });
+
+    document.querySelector(".wrapper").addEventListener("keypress", function (event) {
+        if (event.keyCode == 13) {
+            handleSendEvent();
+        }
+    });
+
+
+    //polling every 2 seconds
+    window.setInterval(pollChatMessages, 1000);
+
+    function pollChatMessages() {
+        let messages = JSON.parse(httpGet(baseUrl)).data;
+        document.getElementById("chat").innerHTML = "";
+        for (let item of messages) {
+            let messageItem = document.createElement("div");
+            messageItem.innerHTML = "<div id='messageWrapper'><div id='name'>name: " + item.name + "</div><div id='message'>message: " + item.message +"</div></div>";
+            document.getElementById("chat").appendChild(messageItem);
+        }
+        window.scrollTo(0,document.body.scrollHeight);
+
+    }
+
+    function handleSendEvent() {
+        let currentText = document.getElementById("inputField").value;
+        httpPost(baseUrl+"/MamboNr5",currentText);
+        document.getElementById("inputField").value = "";
+
+    }
+
+    function httpGet(theUrl) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", theUrl, false); // false for synchronous request
+        xmlHttp.send(null);
+        return xmlHttp.responseText;
+    }
+
+    function httpPost(theUrl, params) {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("POST", theUrl, true); // false for synchronous request
+        xmlHttp.send(params);
+    }
+
+
+</script>
+</body>
+
+</html>
