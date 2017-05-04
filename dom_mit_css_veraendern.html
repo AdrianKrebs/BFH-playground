@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D3.js</title>
+    <link id="cssdatei" rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<header>
+    Mini-Wikipedia
+</header>
+<nav>
+    <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="seite_ohne_css.html">D3.js</a></li>
+        <li><a href="about.html">About</a></li>
+    </ul>
+</nav>
+<aside>
+    <h2>Contents</h2>
+    <ul>
+        <li><a href="#section1">Technical principles</a></li>
+        <li><a href="#section2">API structure</a></li>
+        <li>
+            <a href="#section3">Usage</a>
+        </li>
+        <li>
+            <a href="#section4">External links</a>
+        </li>
+    </ul>
+</aside>
+<article>
+    <header>
+        <h1>D3.js</h1>
+        <p>D3.js (or just D3 for Data-Driven Documents) is a JavaScript library for producing dynamic, interactive data
+            visualizations in web browsers. It makes use of the widely implemented SVG, HTML5, and CSS standards. In
+            contrast to many other libraries, D3.js allows great control over the final visual result.</p>
+    </header>
+    <section id="section1">
+        <h2>Technical principles</h2>
+        <p>
+            Embedded within an HTML webpage, the JavaScript D3.js library uses pre-built JavaScript functions to select
+            elements, create
+            SVG objects, style them, or add transitions, dynamic effects or tooltips to them. These objects can also
+            be widely styled using CSS. Large datasets can be easily bound to SVG objects using simple D3.js functions
+            to generate rich text/graphic charts and diagrams. The data can be in various formats, most commonly JSON,
+            comma-separated values (CSV) or geoJSON, but, if required, JavaScript functions can be written to read other
+            data formats.
+        </p>
+        <h3>Selections</h3>
+        <p>
+            The central principle of D3.js design is to enable the programmer to first use a CSS-style selector to
+            select a given set
+            of Document Object Model (DOM) nodes, then use operators to manipulate them in a similar manner to jQuery.
+            For example, by using D3.js, one may select all HTML p-elements, and then change their text color, e.g. to
+            lavender:
+        </p>
+        <code>d3.selectAll("p") // select all &lt;p&gt; elements
+            .style("color", "lavender") // set style "color" to value "lavender"
+            .attr("class", "squares") // set attribute "class" to value "squares"
+            .attr("x", 50); // set attribute "x" (horizontal position) to value 50px</code>
+        <p>
+            The selection can be based on tag (as in the above example), class, identifier, attribute, or place in the
+            hierarchy. Once
+            elements are selected, one can apply operations to them. This includes getting and setting attributes,
+            display
+            texts, and styles (as in the above example). Elements may also be added and removed. This process of
+            modifying,
+            creating and removing HTML elements can be made dependent on data, which is the basic concept of D3.js.
+        </p>
+        <h3>Transitions</h3>
+        <p>
+            By declaring a transition, values for attributes and styles can be smoothly interpolated over a certain
+            time. The following
+            code will make all HTML p-elements on a page gradually change their text color to pink:
+        </p>
+        <code>d3.selectAll("p") // select all &lt;p&gt; elements
+            .transition("trans_1") // transition with name "trans_1"
+            .delay(0) // transition starting 0ms after trigger
+            .duration(500) // transitioning during 500ms
+            .ease("linear") // transition easing progression is linear...
+            .style("color", "pink"); // ... to color:pink</code>
+        <h3>Data-binding</h3>
+        <p>
+            For more advanced uses, loaded data drives the creation of elements. D3.js loads a given dataset, then, for
+            each element
+            of it, create an SVG object with associated properties (shape, colors, values) and behaviors (transitions,
+            events).
+        </p>
+        <code>// Data
+            var data = [
+            { name:"Ireland", income:53000, life: 78, pop:6378, color: "green"},
+            { name:"Norway", income:73000, life: 87, pop:5084, color: "blue" },
+            { name:"Tanzania", income:27000, life: 50, pop:3407, color: "grey" }
+            ];
+            // Create SVG container
+            var svg = d3.select("#hook").append("svg")
+            .attr("width", 120)
+            .attr("height", 120)
+            .style("fill", "#D0D0D0");
+            // Create SVG elements from data !
+            svg.selectAll("circle") // create virtual circle template
+            .data(data) // bind data
+            .enter() // for each row in data...
+            .append("circle") // bind circle & data row such that...
+            .attr("id", function(d) { return d.name }) // set the circle's id according to the country name
+            .attr("cx", function(d) { return d.income /1000 }) // set the circle's horizontal position according to
+            income
+            .attr("cy", function(d) { return d.life }) // set the circle's vertical position according to life
+            expectancy
+            .attr("r", function(d) { return d.pop /1000 *2 }) // set the circle's radius according to country's
+            population
+            .attr("fill",function(d){ return d.color }); // set the circle's color according to country's color</code>
+        <p>
+            Generated SVG graphics are designed according to the provided data.
+        </p>
+    </section>
+    <section id="section2">
+        <h2>API structure</h2>
+        <p>D3.js API contains several hundred functions, and they can be grouped into following logical units:
+        <ul>
+            <li>Selections</li>
+            <li>Transitions</li>
+            <li>Arrays</li>
+            <li>Math</li>
+            <li>Color</li>
+            <li>Scales</li>
+            <li>SVG</li>
+            <li>Time</li>
+            <li>Layouts</li>
+            <li>Geography</li>
+            <li>Geometry</li>
+            <li>Behaviors</li>
+        </ul>
+        </p>
+    </section>
+    <section id="section3">
+        <h2>Usage</h2>
+        <p>Data visualization company <a href="/wiki/Datameer">Datameer</a> officially uses D3.js as its core
+            technology,
+            while <i><a href="/wiki/The_New_York_Times">The New York Times</a></i> sometimes uses it for rich graphs.
+            It is used by the <i>iD</i> editor for editing <a href="/wiki/OpenStreetMap">OpenStreetMap</a>.</p>
+    </section>
+    <section id="section4">
+        <h2>External links</h2>
+        <p>
+        <ul>
+            <li><a href="http://d3js.org/">Official website</a></li>
+            <li><a href="http://github.com/mbostock/d3/wiki/Gallery/">D3.js Gallery</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/D3.js">Unedited Version of this site</a></li>
+        </ul>
+        </p>
+    </section>
+</article>
+<footer>
+    This page has been copied and shortened last night by Tinu.
+</footer>
+<script>
+
+    function fancyHighlighting() {
+
+        //query select all elements
+        let allElements = document.querySelectorAll('*');
+        let randomNumber = Math.floor(Math.random() * allElements.length);
+
+        let defaultSize = allElements[randomNumber].style.fontSize;
+        let defaultColor = allElements[randomNumber].style.color;
+        allElements[randomNumber].style.fontSize = '10em';
+        //allElements[randomNumber].style.color = 'pink';
+        setTimeout(function () {
+            allElements[randomNumber].style.fontSize = defaultSize;
+          //  allElements[randomNumber].style.color = defaultColor;
+        }, 1000);
+
+    }
+
+    window.setInterval(fancyHighlighting, 1500);
+
+</script>
+</body>
+
+</html>

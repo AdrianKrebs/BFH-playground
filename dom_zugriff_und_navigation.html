@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holy Grail Layout</title>
+
+</head>
+<body class="holy-grail">
+<header>Ich bin ein Header</header>
+<div class="holy-grail-wrapper">
+    <nav class="holy-grail-nav">Ich bin der Navigationsbereich</nav>
+    <main class="holy-grail-content"> Ich bin der Content</main>
+    <aside class="holy-grail-ads">Ich bin Werbung</aside>
+</div>
+<footer>Ich bin ein Footer</footer>
+<script>
+    (function () { // IIFE
+        // iiteriere durch den ganzen baum rekursiv, brich ab wenn keine kinder-nodes mehr
+        var root = document.getElementsByTagName('body')[0];
+        loopTroughChildren(root.children);
+
+    })();
+
+    function loopTroughChildren(children) {
+        for (var i = 0, ii = children.length; i < ii; i++) {
+            console.log(children[i].tagName);
+            var innerChildren = children[i].children; // hab ich weitere kinder?
+            // wenn ja neuer loop
+            if (innerChildren && innerChildren.length > 0) {
+                loopTroughChildren(innerChildren);
+            }
+        }
+    }
+
+</script>
+</body>
+
+</html>
