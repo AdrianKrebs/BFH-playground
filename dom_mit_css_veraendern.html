@@ -169,15 +169,15 @@
         let defaultSize = allElements[randomNumber].style.fontSize;
         let defaultColor = allElements[randomNumber].style.color;
         allElements[randomNumber].style.fontSize = '10em';
-        //allElements[randomNumber].style.color = 'pink';
+        allElements[randomNumber].style.color = 'pink';
         setTimeout(function () {
             allElements[randomNumber].style.fontSize = defaultSize;
-          //  allElements[randomNumber].style.color = defaultColor;
-        }, 1000);
+            allElements[randomNumber].style.color = defaultColor;
+        }, 200);
 
     }
 
-    window.setInterval(fancyHighlighting, 1500);
+    window.setInterval(fancyHighlighting, 500);
 
 </script>
 </body>

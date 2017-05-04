@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Holy Grail Layout</title>
+    <style type="text/css">
+        body {
+            color: black;
+            text-size: 1em;
+            font-family: "Calibri Light";
+            padding: 0;
+            margin: 0;
+        }
+
+        #submitButton {
+            background: lightblue;
+            font-family: "Calibri Light";
+            font-weight: bold;
+            font-size: 16px;
+            color: black;
+            border: 2px solid #4CAF50; /* Green */
+        }
+
+        #submitButton:hover {
+            background-color: white;
+        }
+
+        #inputField {
+            background: lightblue;
+            font-size: 16px;
+            border: 2px solid #4CAF50; /* Green */
+        }
+
+        li {
+
+        }
+
+        ul {
+            background: aliceblue;
+            margin: 0;
+        }
+
+        h2 {
+            background: cornflowerblue;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            background: lightgreen;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <main class="holy-grail-content">
+        <h1>Event Test Lab</h1>
+        <form id="myForm">
+            <input id="inputField" type="text" placeholder="type something">
+            <input id="submitButton" type="submit" value="GO!">
+        </form>
+        <h2>Item List</h2>
+        <ul id="itemList">
+        </ul>
+    </main>
+</div>
+<script>
+    document.getElementById("submitButton").addEventListener("click", function (event) {
+        // interrupt submit
+        event.preventDefault();
+        let item = document.createElement("li");
+        let currentText = document.getElementById("inputField").value;
+        item.appendChild(document.createTextNode(currentText));
+        document.getElementById("itemList").appendChild(item);
+        document.getElementById("inputField").value = "";
+
+    });
+</script>
+</body>
+
+</html>
