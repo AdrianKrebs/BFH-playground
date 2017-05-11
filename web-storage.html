@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formular Attribute</title>
+    <style type="text/css">
+        body {
+            color: black;
+            font-size: 5em;
+            text-align: center;
+            font-family: "Calibri Light";
+        }
+
+        h2 {
+            font-size: 0.5em;
+        }
+
+        #local-storage-counter {
+            background-color: lightblue;
+        }
+
+        #session-storage-counter {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h2>Local Storage</h2>
+    <div id="local-storage-counter"></div>
+    <h2>Session Storage</h2>
+    <div id="session-storage-counter"></div>
+
+</div>
+<script>
+
+    window.onload = function () {
+        let localStorageCounter = localStorage.getItem('counter');
+        if (!localStorageCounter) {
+            localStorage.setItem('counter', 1);
+            console.log("Counter in local storage set to: 1");
+        }
+        else {
+            localStorage.setItem('counter', ++localStorageCounter);
+            console.log("Counter in local storage set to: " + localStorageCounter);
+        }
+
+        let sessionStorageCounter = sessionStorage.getItem('counter');
+        if (!sessionStorageCounter) {
+            sessionStorage.setItem('counter', 1);
+            console.log("Counter in session storage set to: 1");
+        } else {
+            sessionStorage.setItem('counter', ++sessionStorageCounter);
+            console.log("Counter in session storage set to: " + sessionStorageCounter);
+        }
+
+        document.getElementById('local-storage-counter').innerHTML = "" + localStorageCounter;
+        document.getElementById('session-storage-counter').innerHTML = "" + sessionStorageCounter;
+
+    };
+
+    window.addEventListener('storage', function (e) {
+        document.getElementById('local-storage-counter').innerHTML = e.newValue;
+
+        // else, event is caused by an update to localStorage, ignore it
+    });
+</script>
+</body>
+</html>
