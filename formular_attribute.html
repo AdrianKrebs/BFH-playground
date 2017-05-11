@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formular Attribute</title>
+    <style type="text/css">
+        body {
+            color: black;
+            text-size: 1em;
+            font-family: "Calibri Light";
+        }
+
+        h2 {
+            font-size: 2em;
+
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        .wrapper {
+            display: flex;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input:invalid {
+
+            border: 2px solid red;
+
+            /* mind 1 zeichen a -z kein leerschlag*/
+            /*auch bei optinalen pattern prüfen*/
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <form action="" method="" onSubmit="verify();">
+        <label>Vorname <input minlength="1" placeholder="vorname" type="text"
+                              data-error="mein custom html element zum auslesen von fehlermeldungen"></label>
+        <label>Nachname* <input required minlength="1" placeholder="nachname" type="text"></label>
+        <label>Adressse <input minlength="1" type="text"></label>
+        <label>Land* <input required list="country"/>
+            <datalist id="country">
+                <option value="Schweiz">
+                <option value="Deutschland">
+                <option value="Frankreich">
+                <option value="Italien">
+            </datalist>
+        </label>
+        <label>Postzleitzahl <input type="number"></label>
+        <label>E-Mail* <input required type="email"></label>
+        <label>Benutzername* <input id="nickname" required pattern="^\S+$" type="text"></label>
+        <label>Passwort* <input required minlength="8" type="password"></label>
+        <label>Photo <input accept=".png,.jpg" type="file"></label>
+        <label>AGBs gelesen?* <input required type="checkbox"></label>
+        <p>* required fields</p>
+        <input type=submit name=submit value="Submit">
+    </form>
+</div>
+<script>
+
+</script>
+</body>
+</html>
