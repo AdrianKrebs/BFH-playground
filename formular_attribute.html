@@ -10,25 +10,31 @@
             font-family: "Calibri Light";
         }
 
-        h2 {
-            font-size: 2em;
-
-        }
-
-        h1 {
-            font-size: 3em;
-        }
-
-        .wrapper {
-            display: flex;
-        }
-
         form {
-            display: flex;
-            flex-direction: column;
+            /* Just to center the form on the page */
+            margin: 0 auto;
+            width: 400px;
+            /* To see the outline of the form */
+            padding: 1em;
+            border: 1px solid #CCC;
+            border-radius: 1em;
+            display: table;
         }
 
-        input:invalid {
+        .block {
+            display: table-row;
+        }
+
+        label {
+            display: table-cell;
+        }
+
+        input {
+            display: table-cell;
+            margin-top: 1em;
+        }
+
+        input:invalid:focus {
 
             border: 2px solid red;
 
@@ -42,24 +48,32 @@
 <body>
 <div class="wrapper">
     <form action="" method="" onSubmit="verify();">
-        <label>Vorname <input minlength="1" placeholder="vorname" type="text"
-                              data-error="mein custom html element zum auslesen von fehlermeldungen"></label>
-        <label>Nachname* <input required minlength="1" placeholder="nachname" type="text"></label>
-        <label>Adressse <input minlength="1" type="text"></label>
-        <label>Land* <input required list="country"/>
-            <datalist id="country">
+        <div class="block">
+            <label for="vorname">Vorname</label>
+            <input id="vorname" minlength="1" placeholder="vorname"
+                   type="text"
+                   data-error="mein custom html element zum auslesen von fehlermeldungen">
+        </div>
+        <div class="block"><label for="nachname">Nachname*</label> <input pattern=".*\S.*" id="nachname" required
+                                                                          minlength="1"
+                                                                          placeholder="nachname" type="text"></div>
+        <div class="block"><label for="adresse">Adressse </label> <input id="adresse" minlength="1" type="text"></div>
+        <div class="block"><label for="country">Land* </label><input id="country" required list="countries"/>
+            <datalist id="countries">
                 <option value="Schweiz">
                 <option value="Deutschland">
                 <option value="Frankreich">
                 <option value="Italien">
             </datalist>
-        </label>
-        <label>Postzleitzahl <input type="number"></label>
-        <label>E-Mail* <input required type="email"></label>
-        <label>Benutzername* <input id="nickname" required pattern="^\S+$" type="text"></label>
-        <label>Passwort* <input required minlength="8" type="password"></label>
-        <label>Photo <input accept=".png,.jpg" type="file"></label>
-        <label>AGBs gelesen?* <input required type="checkbox"></label>
+        </div>
+        <div class="block"><label for="plz">Postzleitzahl</label> <input id="plz" type="number"></div>
+        <div class="block"><label for="mail">E-Mail* </label><input id="mail" required type="email"></div>
+        <div class="block"><label for="nickname">Benutzername*</label> <input id="nickname" required pattern="\S+"
+                                                                              type="text"></div>
+        <div class="block"><label for="pwd">Passwort*</label> <input id="pwd" required minlength="8" type="password">
+        </div>
+        <div class="block"><label for="pic">Photo </label><input id="pic" accept=".png,.jpg" type="file"></div>
+        <div class="block"><label for="agb">AGBs gelesen?* </label><input id="agb" required type="checkbox"></div>
         <p>* required fields</p>
         <input type=submit name=submit value="Submit">
     </form>
