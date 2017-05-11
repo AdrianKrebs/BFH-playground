@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Indexed DB</title>
+    <style type="text/css">
+        body {
+            color: black;
+            text-align: center;
+            font-family: "Calibri Light";
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        li {
+            font-size: 1em;
+            list-style-type: none;
+            background: lightblue;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h2>Timestamps from IndexedDB</h2>
+    <div id="timestamps">
+        <ul id="timestampList"></ul>
+    </div>
+
+</div>
+<script>
+
+    window.onload = function () {
+
+        document.getElementById("timestampList").innerHTML = "";
+
+
+        var db;
+        var request = window.indexedDB.open("myTestDB", 1);
+
+        request.onerror = function (event) {
+            console.log("error: ");
+        };
+
+        request.onsuccess = function (event) {
+            db = request.result;
+            console.log("success: " + db);
+            add();
+            readAll();
+        };
+
+        request.onupgradeneeded = function (event) {
+            var db = event.target.result;
+            if (event.newVersion == 1) {
+                var objectStore = db.createObjectStore("timestamps", {keyPath: "time"});
+            }
+
+        }
+
+    function readAll() {
+        var objectStore = db.transaction(["timestamps"], "readonly").objectStore("timestamps");
+        objectStore.openCursor().onsuccess = function(event) {
+            var cursor = event.target.result;
+            if (cursor) {
+                console.log("time" + cursor.key + " is " + cursor.value.name);
+                let list = document.getElementById('timestampList');
+                let item = document.createElement("li");
+                item.appendChild(document.createTextNode(cursor.key));
+                list.appendChild(item);
+                cursor.continue();
+            }
+            else {
+                console.log("No more entries!");
+            }
+        };
+    }
+
+    function add() {
+        var request = db.transaction(["timestamps"], "readwrite")
+            .objectStore("timestamps")
+            .add({time: Date.now()});
+
+        request.onsuccess = function (event) {
+            console.log("gespeichert");
+        };
+
+        request.onerror = function (event) {
+            alert("Error");
+        }
+    }
+
+
+    }
+    ;
+
+
+</script>
+</body>
+</html>
