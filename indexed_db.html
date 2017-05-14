@@ -24,6 +24,7 @@
 <body>
 <div class="wrapper">
     <h2>Timestamps from IndexedDB</h2>
+    <div id="count"></div>
     <div id="timestamps">
         <ul id="timestampList"></ul>
     </div>
@@ -60,6 +61,11 @@
 
     function readAll() {
         var objectStore = db.transaction(["timestamps"], "readonly").objectStore("timestamps");
+        var myIndex = objectStore.index('lName');
+        var countRequest = myIndex.count();
+        countRequest.onsuccess = function() {
+            console.log(countRequest.result);
+        }
         objectStore.openCursor().onsuccess = function(event) {
             var cursor = event.target.result;
             if (cursor) {
