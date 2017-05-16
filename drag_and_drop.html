@@ -75,8 +75,8 @@
 
     function handleDrop(e) {
 
-        sourceElement.innerHTML = this.innerHTML; // html des quellelements wird durch html des zielelements ersetzt
-        let temp = sourceElement.style.background;
+        sourceElement.innerHTML = this.innerHTML; // swapping des html contents
+        let temp = sourceElement.style.background; // swapping des stylings
         sourceElement.style.background = this.style.background;
         this.style.background = temp;
         this.innerHTML = e.dataTransfer.getData('text/html');

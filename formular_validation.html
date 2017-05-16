@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Formular Attribute</title>
+    <style type="text/css">
+        body {
+            color: black;
+            text-size: 1em;
+            font-family: "Calibri Light";
+        }
+
+        form {
+            /* Just to center the form on the page */
+            margin: 0 auto;
+            width: 400px;
+            /* To see the outline of the form */
+            padding: 1em;
+            border: 1px solid #CCC;
+            border-radius: 1em;
+            display: table;
+        }
+
+        .block {
+            display: table-row;
+        }
+
+        label {
+            display: table-cell;
+        }
+
+        input {
+            display: table-cell;
+            margin-top: 1em;
+        }
+
+        input:invalid:focus {
+
+            border: 2px solid red;
+
+            /* mind 1 zeichen a -z kein leerschlag*/
+            /*auch bei optinalen pattern prüfen*/
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <form action="" method="" onSubmit="verify();">
+        <div class="block"><label for="nickname">Benutzername*</label> <input id="nickname"   required pattern="\S+" type="text"></div>
+        <div class="block"><label for="pwd">Passwort*</label> <input data-validation-error="der Passwort darf nicht leer sein" id="pwd" required minlength="8" type="password">
+        </div>
+        <input type=submit name=submit value="Login">
+    </form>
+</div>
+<script>
+    document.getElementById("pwd").oninvalid = function () {
+        this.setCustomValidity(this.value ? '' : this.getAttribute("data-validation-error"));
+    };
+</script>
+</body>
+</html>

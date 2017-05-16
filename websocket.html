@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websocket Sample</title>
+    <style type="text/css">
+        body {
+            color: black;
+            text-size: 1em;
+            font-family: "Calibri Light";
+            padding: 0;
+            margin: 0;
+        }
+
+        #sendBtn {
+            background: lightblue;
+            font-family: "Calibri Light";
+            font-weight: bold;
+            font-size: 16px;
+            color: black;
+            border: 2px solid #4CAF50; /* Green */
+        }
+
+        #sendBtn:hover {
+            background-color: white;
+        }
+
+        #inputField {
+            background: lightblue;
+            font-size: 16px;
+            border: 2px solid #4CAF50; /* Green */
+        }
+
+        h2 {
+            background: cornflowerblue;
+            margin-bottom: 5px;
+        }
+
+        h1 {
+            background: lightgreen;
+        }
+        #timestamp {
+            margin: 0;
+            background: lightgreen;
+
+        }
+
+        #message {
+            margin: 0;
+            background: lightblue;
+        }
+
+        #messageWrapper {
+            margin-top: 15px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <main class="holy-grail-content">
+        <h1>Websocket Sample</h1>
+        <div id="chat">
+        </div>
+        <input id="inputField" type="text" placeholder="type something">
+        <button id="sendBtn">Send</button>
+    </main>
+</div>
+<script>
+    let connection = new WebSocket('ws://echo.websocket.org');
+
+
+    connection.onopen = function () {
+        connection.send('Ping'); // initiales ping
+    };
+
+    connection.onerror = function (error) {
+        console.log('WebSocket Error ' + error);
+    };
+
+    connection.onmessage = function (e) {
+        console.log('Server: ' + e.data);
+        let messageItem = document.createElement("div");
+        messageItem.innerHTML = "<div id='messageWrapper'><div id='timestamp'>"+e.timeStamp+"</div><div id='message'>" + e.data + "</div></div>";
+        document.getElementById("chat").appendChild(messageItem);
+
+    };
+
+    document.getElementById("sendBtn").addEventListener("click", function (event) {
+        sendMessage();
+    });
+
+    document.querySelector(".wrapper").addEventListener("keypress", function (event) {
+        if (event.keyCode === 13) {
+            sendMessage();
+        }
+    });
+
+
+    function sendMessage() {
+        let currentText = document.getElementById("inputField").value;
+        connection.send(currentText);
+        document.getElementById("inputField").value = "";
+
+    }
+
+
+</script>
+</body>
+
+</html>
