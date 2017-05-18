@@ -3,7 +3,6 @@
  */
 const CACHE_NAME = 'my-site-cache-v1';
 const urlsToCache = [
-    '',
     'service_worker.html',
     'building.png'
 ];
