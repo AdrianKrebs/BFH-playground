@@ -14,12 +14,6 @@
             font-size: 2em;
         }
 
-        li {
-            min-height: 50px;
-            font-size: 1em;
-            vertical-align: middle;
-            list-style-type: none;
-        }
 
     </style>
 </head>
@@ -31,7 +25,6 @@
 <script>
     setTimeout(function () {
         if (window.Notification && Notification.permission !== "denied") {
-
             Notification.requestPermission(function (status) {  // status is "granted", if accepted by user
                 var n = new Notification('ALARM', {
                     body: 'Bitte 50 Bitcoins zahlen sonst werden ihre Daten verschlüsselt!',

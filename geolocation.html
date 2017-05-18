@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Geolocation Sample</title>
+    <style type="text/css">
+        body {
+            color: black;
+            text-align: center;
+            font-family: "Calibri Light";
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        #map {
+            min-height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <h2>Geolocation Sample</h2>
+    <div id="map"></div>
+</div>
+<script>
+    function initMap() {
+
+        navigator.geolocation.getCurrentPosition(function (position) {
+            var uluru = {lat: position.coords.latitude, lng: position.coords.longitude};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: uluru
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                map: map
+            });
+        });
+
+    }
+</script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnBq4UMqUW8CONJ1RFzHdGxdtRYwvd8_g&callback=initMap">
+</script>
+</body>
+</html>
