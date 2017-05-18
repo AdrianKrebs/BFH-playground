@@ -1,0 +1,13 @@
+{
+  "name": "serviceworker",
+  "version": "",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "lite": "lite-server",
+    "start": "npm run lite"
+  },
+  "devDependencies": {
+    "lite-server": "*"
+  }
+}

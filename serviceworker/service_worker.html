@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Worker Sample</title>
+    <style type="text/css">
+        body {
+            color: black;
+            text-align: center;
+            font-family: "Calibri Light";
+        }
+
+        h2 {
+            font-size: 2em;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h1>Service Worker Sample</h1>
+<div class="wrapper">
+    <h2>
+        Cached image:
+    </h2>
+    <img src="building.png">
+    <h2>
+        Uncached image:
+    </h2>
+    <img src="rockefeller.jpg">
+</div>
+<script>
+
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+            navigator.serviceWorker.register('service-worker.js').then(function (registration) {
+                // Registration was successful
+                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+            }, function (err) {
+                // registration failed :(
+                console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+    }
+
+</script>
+</body>
+</html>
