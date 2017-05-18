@@ -5,20 +5,11 @@
     <title>Web GL Sample</title>
     <style type="text/css">
         body {
-            color: black;
+            background-color: #000000;
+            overflow: hidden;
             text-align: center;
             font-family: "Calibri Light";
-        }
 
-        h2 {
-            font-size: 2em;
-        }
-
-        li {
-            min-height: 50px;
-            font-size: 1em;
-            vertical-align: middle;
-            list-style-type: none;
         }
 
     </style>
@@ -27,9 +18,79 @@
 <div class="wrapper"></div>
 <script src="three.min.js"></script>
 <script>
+    let scene = new THREE.Scene();
+    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+
+    let renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    let lights = [];
+    lights[0] = new THREE.PointLight(0xffffff, 1, 0);
+    lights[1] = new THREE.PointLight(0xffffff, 1, 0);
+    lights[2] = new THREE.PointLight(0xffffff, 1, 0);
+
+    lights[0].position.set(0, 200, 0);
+    lights[1].position.set(100, 200, 100);
+    lights[2].position.set(-100, -200, -100);
+
+    scene.add(lights[0]);
+    scene.add(lights[1]);
+    scene.add(lights[2]);
+
+    let boxGeometry = new THREE.BoxGeometry(1, 1, 1);
+    let cylinderGeometry = new THREE.CylinderGeometry(1, 1, 1, 50);
+    let sphereGeometry = new THREE.SphereGeometry(1, 6, 6);
+
+
+    let materialCube = new THREE.MeshPhongMaterial({
+        color: 0x156289,
+        emissive: 0x072534,
+        side: THREE.DoubleSide,
+        shading: THREE.FlatShading
+    });
+
+    let materialCylinder = new THREE.MeshPhongMaterial({
+        color: 0x89151d,
+        emissive: 0x072534,
+        side: THREE.DoubleSide,
+        shading: THREE.FlatShading
+    });
+
+    let sphereMaterial = new THREE.MeshPhongMaterial({
+        color: 0x158938,
+        emissive: 0x072534,
+        side: THREE.DoubleSide,
+        shading: THREE.FlatShading
+    });
 
 
 
+    let cube = new THREE.Mesh(boxGeometry, materialCube);
+    let cylinder = new THREE.Mesh(cylinderGeometry, materialCylinder);
+    let sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    scene.add(cube);
+    scene.add(cylinder);
+    scene.add(sphere);
+    cylinder.position.set(1, 1, 1);
+    sphere.position.set(-1, -1, -1);
+
+    camera.position.z = 5;
+
+    let render = function () {
+        requestAnimationFrame(render);
+
+        cube.rotation.x += 0.005;
+        cube.rotation.y += 0.005;
+        cylinder.rotation.y += 0.0075;
+        cylinder.rotation.x += 0.0075;
+        sphere.rotation.x += 0.01;
+        sphere.rotation.x += 0.01;
+
+        renderer.render(scene, camera);
+    };
+
+    render();
 </script>
 </body>
 </html>
